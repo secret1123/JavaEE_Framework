@@ -1,0 +1,22 @@
+group 'JavaEE_Framework'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'javax:javaee-api:7.0'
+    compile 'mysql:mysql-connector-java:5.1.42'
+    compile 'jstl:jstl:1.2'
+    compile 'com.alibaba:fastjson:1.2.7'
+    compile 'org.jasypt:jasypt:1.9.2'
+    compile 'com.github.penggle:kaptcha:2.3.2'
+    compile 'org.json:json:20170516'
+    compile 'org.mybatis:mybatis:3.3.0'
+}
