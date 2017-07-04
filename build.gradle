@@ -18,5 +18,5 @@ dependencies {
     compile 'org.jasypt:jasypt:1.9.2'
     compile 'com.github.penggle:kaptcha:2.3.2'
     compile 'org.json:json:20170516'
-    compile 'org.mybatis:mybatis:3.3.0'
+    compile 'org.mybatis:mybatis:3.4.4'
 }
