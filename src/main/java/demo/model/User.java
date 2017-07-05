@@ -12,7 +12,21 @@ public class User implements Serializable {
     private String username;
     private String password;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    public User(Integer id) {
+        this.id = id;
+    }
+
     public User() {
+
     }
 
     public User(Integer id, String username, String password) {

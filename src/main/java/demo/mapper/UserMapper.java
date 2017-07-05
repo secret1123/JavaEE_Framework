@@ -9,4 +9,5 @@ import demo.model.User;
  */
 public interface UserMapper {
     int create(User user);
+
 }
