@@ -6,15 +6,15 @@ package demo.d;
  * JavaEE_Framework
  */
 public class Hello {
-    private String name;
+//    private String(chaSequence 接口的实现类) name;
+
+    private CharSequence name;//接口
 
     public void sayHello() {
-
         System.out.println("Hello, " + name);
     }
 
-    public void setName(String name){
-        name = "Tom";
+    public void setName(CharSequence name){
         this.name = name;
     }
 }
