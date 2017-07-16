@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="book">
+    <insert id="create" parameterType="book" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO db_test.book VALUE (NULL, #{title}, #{author},#{date},#{price})
+    </insert>
+    <select id="queryAll" resultType="book">
+        select *
+        from db_test.book;
+    </select>
+    <select id="queryBookById" parameterType="int" resultType="book">
+        select *
+        from db_test.book
+        WHERE id = #{id};
+    </select>
+    <update id="modify" parameterType="book">
+        update db_test.book
+        set title = #{title},
+            author = #{author},
+            date = #{date},
+            price = #{price}
+        where id = #{id};
+    </update>
+    <delete id="remove" parameterType="int">
+        DELETE FROM db_test.book
+        WHERE id = #{id}
+    </delete>
+</mapper>
