@@ -10,7 +10,7 @@
         select *
         from db_test.book;
     </select>
-    <select id="queryBookById" parameterType="int" resultType="book">
+    <select id="queryById" parameterType="int" resultType="book">
         select *
         from db_test.book
         WHERE id = #{id};

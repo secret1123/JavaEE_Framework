@@ -18,19 +18,15 @@ public class UserController extends BaseController {
     @Autowired
     private UserDao userDao;
 
-//    public void setUserDao(UserDao userDao) {
-//        this.userDao = userDao;
-//    }
-
     @RequestMapping("create")
     public String create(User user) {
         userDao.create(user);
         return "redirect:/default.jsp";
     }
 
-    @RequestMapping("signIn")
-    public String signIn(User user) {
-        user = userDao.signIn(user);
+    @RequestMapping("query")
+    public String query(User user) {
+        user = userDao.query(user);
         if (user != null) {
             session.setAttribute("user",user);
             return "redirect:/book/queryAll";

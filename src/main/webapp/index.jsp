@@ -45,7 +45,7 @@ ${sessionScope.user.username}
         <td>${book.author}</td>
         <td>${book.date}</td>
         <td>${book.price}</td>
-        <td><a href="/book/queryBookById/${book.id}">编辑</a></td>
+        <td><a href="/book/queryById/${book.id}">编辑</a></td>
         <td><a href="/book/remove/${book.id}" onclick="return del()">删除</a></td>
     </tr>
 </c:forEach>

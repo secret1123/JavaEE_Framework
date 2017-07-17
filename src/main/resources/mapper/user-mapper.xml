@@ -6,7 +6,7 @@
     <insert id="create" parameterType="user" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO db_test.user VALUE (NULL, #{username}, #{password})
     </insert>
-    <select id="signIn" parameterType="user" resultType="user">
+    <select id="query" parameterType="user" resultType="user">
         SELECT *
         FROM db_test.user
         WHERE username = #{username} AND password = #{password}

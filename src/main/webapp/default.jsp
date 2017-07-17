@@ -12,7 +12,7 @@
   </head>
   <body>
   <h1>首页</h1>
-  <form action="/user/signIn" method="post">
+  <form action="/user/query" method="post">
     <input type="text" name="username" placeholder="USERNAME"><br>
     <input type="password" name="password" placeholder="PASSWORD"><br>
     <input type="submit" value="SIGN IN">

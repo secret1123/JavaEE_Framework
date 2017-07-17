@@ -7,8 +7,5 @@ import demo.model.User;
  * 2017/7/10 19:21.
  * JavaEE_Framework
  */
-public interface UserDao {
-    void create(User user);
-
-    User signIn(User user);
+public interface UserDao extends GenericDao<User> {
 }
