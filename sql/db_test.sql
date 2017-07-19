@@ -7,7 +7,9 @@ CREATE TABLE db_test.user (
   COMMENT 'PK',
   username VARCHAR(191) UNIQUE
   COMMENT '用户名',
-  password VARCHAR(255) COMMENT '密码'
+  password VARCHAR(255) COMMENT '密码',
+  lastTime DATETIME
+  COMMENT '登录时间'
 )
   COMMENT '用户表';
 
@@ -25,6 +27,8 @@ CREATE TABLE db_test.book (
   COMMENT '定价'
 )
   COMMENT '图书表';
+
+TRUNCATE TABLE db_test.user;
 
 SELECT *
 FROM db_test.user;

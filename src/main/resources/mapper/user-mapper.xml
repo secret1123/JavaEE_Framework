@@ -4,11 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
     <insert id="create" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO db_test.user VALUE (NULL, #{username}, #{password})
+        INSERT INTO db_test.user (username, password) VALUE (#{username}, #{password})
     </insert>
     <select id="query" parameterType="user" resultType="user">
         SELECT *
         FROM db_test.user
         WHERE username = #{username} AND password = #{password}
     </select>
+    <select id="queryByUsername" parameterType="String" resultType="user">
+        SELECT *
+        FROM db_test.user
+        WHERE username = #{username};
+    </select>
+    <update id="modify" parameterType="user">
+        UPDATE db_test.user
+        SET username = #{username},
+            password = #{password},
+            lastTime = #{lastTime}
+        WHERE id = #{id};
+    </update>
+    <update id="updateLastTime" parameterType="int">
+        UPDATE db_test.user
+        SET lastTime = now()
+        WHERE id = #{id};
+    </update>
 </mapper>

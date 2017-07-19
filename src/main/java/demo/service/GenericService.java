@@ -1,14 +1,14 @@
-package demo.dao;
+package demo.service;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by AnLu on
- * 2017/7/17 10:51.
+ * 2017/7/18 10:57.
  * JavaEE_Framework
  */
-public interface GenericDao<T extends Serializable> {
+public interface GenericService<T extends Serializable> {
     void create(T t);
 
     T query(String statement,Object parameter);

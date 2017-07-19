@@ -16,7 +16,11 @@ dependencies {
     compile 'org.mybatis:mybatis:3.4.4'
     compile 'org.springframework:spring-webmvc:4.3.9.RELEASE'
     compile 'org.springframework:spring-jdbc:4.3.9.RELEASE'
+    compile 'org.springframework:spring-context-support:4.3.9.RELEASE'
     compile 'mysql:mysql-connector-java:5.1.42'
     compile 'commons-dbcp:commons-dbcp:1.4'
     compile 'jstl:jstl:1.2'
+    compile 'org.jasypt:jasypt:1.9.2'
+    compile 'org.projectlombok:lombok:1.16.18'
+    compile 'org.freemarker:freemarker:2.3.26-incubating'
 }

@@ -1,7 +1,7 @@
 package demo.controller;
 
-import demo.dao.UserDao;
 import demo.model.User;
+import demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,27 +16,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController extends BaseController {
 
     @Autowired
-    private UserDao userDao;
+    private UserService userService;
 
-    @RequestMapping("create")
-    public String create(User user) {
-        userDao.create(user);
-        return "redirect:/default.jsp";
+    @RequestMapping("signUp")
+    public String signUp(User user) {
+        if (userService.signUp(user)) {
+            return "redirect:/default.jsp";
+        }
+        request.setAttribute("message","用户名已经存在");
+        return "/sign_up.jsp";
     }
 
-    @RequestMapping("query")
-    public String query(User user) {
-        user = userDao.query(user);
+    @RequestMapping("signIn")
+    public String signIn(User user) {
+        user = userService.signIn(user);
         if (user != null) {
-            session.setAttribute("user",user);
-            return "redirect:/book/queryAll";
-        }
-        request.setAttribute("message","用户名或密码错误");
+                session.setAttribute("user", user);
+                return "redirect:/book/queryAll";
+            }
+        request.setAttribute("message", "用户名或密码错误");
         return "/default.jsp";
     }
 
     @RequestMapping("signOut")
-    public String signOut(){
+    public String signOut() {
         session.invalidate();
         return "redirect:/default.jsp";
     }

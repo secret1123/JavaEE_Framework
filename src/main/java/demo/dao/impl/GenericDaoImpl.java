@@ -3,8 +3,9 @@ package demo.dao.impl;
 import demo.dao.GenericDao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
+import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
@@ -13,18 +14,18 @@ import java.util.List;
  * 2017/7/17 11:03.
  * JavaEE_Framework
  */
-@Repository
-public class GenericDaoImpl<T> implements GenericDao<T> {
+public class GenericDaoImpl<T extends Serializable> implements GenericDao<T> {
 
     private String namespace;
 
     @Autowired
     private SqlSession sqlSession;
 
+
     public GenericDaoImpl() {
         ParameterizedType parameterizedType = (ParameterizedType) getClass().getGenericSuperclass();
         Class clazz = (Class) parameterizedType.getActualTypeArguments()[0];
-        namespace = clazz.getSimpleName().toLowerCase();
+        namespace = StringUtils.uncapitalize(clazz.getSimpleName());
     }
 
     @Override
@@ -33,8 +34,8 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
     }
 
     @Override
-    public T query(T t) {
-        return sqlSession.selectOne(namespace.concat(".query"),t);
+    public T query(String statement,Object parameter) {
+        return sqlSession.selectOne(namespace.concat(".").concat(statement),parameter);
     }
 
     @Override
@@ -50,6 +51,11 @@ public class GenericDaoImpl<T> implements GenericDao<T> {
     @Override
     public void modify(T t) {
         sqlSession.update(namespace.concat(".modify"),t);
+    }
+
+    @Override
+    public void modify(String statement, Object parameter) {
+        sqlSession.update(namespace.concat(".").concat(statement),parameter);
     }
 
     @Override
