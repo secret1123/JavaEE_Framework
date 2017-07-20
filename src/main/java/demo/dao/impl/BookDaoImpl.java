@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
  * JavaEE_Framework
  */
 @Repository
-public class BookDaoImpl extends GenericDaoImpl<Book> implements BookDao{
+public class BookDaoImpl extends GenericDaoImpl<Book,Integer> implements BookDao{
 }

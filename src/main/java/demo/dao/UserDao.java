@@ -7,5 +7,5 @@ import demo.model.User;
  * 2017/7/10 19:21.
  * JavaEE_Framework
  */
-public interface UserDao extends GenericDao<User> {
+public interface UserDao extends GenericDao<User,Integer> {
 }

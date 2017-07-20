@@ -14,7 +14,7 @@ import java.util.List;
  * 2017/7/17 11:03.
  * JavaEE_Framework
  */
-public class GenericDaoImpl<T extends Serializable> implements GenericDao<T> {
+public class GenericDaoImpl<T extends Serializable,ID extends Number> implements GenericDao<T,ID> {
 
     private String namespace;
 
@@ -44,7 +44,12 @@ public class GenericDaoImpl<T extends Serializable> implements GenericDao<T> {
     }
 
     @Override
-    public T queryById(int id) {
+    public List<T> list(int page) {
+        return sqlSession.selectList(namespace.concat(".list"));
+    }
+
+    @Override
+    public T queryById(ID id) {
         return sqlSession.selectOne(namespace.concat(".queryById"),id);
     }
 
@@ -59,7 +64,7 @@ public class GenericDaoImpl<T extends Serializable> implements GenericDao<T> {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(ID id) {
         sqlSession.delete(namespace.concat(".remove"),id);
     }
 }

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="inc.jsp"%>
+<%@include file="commons/inc.jsp"%>
 <html>
 <head>
     <title>sign up page</title>

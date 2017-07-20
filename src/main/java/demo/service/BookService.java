@@ -7,5 +7,5 @@ import demo.model.Book;
  * 2017/7/18 10:59.
  * JavaEE_Framework
  */
-public interface BookService extends GenericService<Book> {
+public interface BookService extends GenericService<Book,Integer> {
 }

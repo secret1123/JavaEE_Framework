@@ -19,7 +19,7 @@ public class BookController extends BaseController {
     @Autowired
     private BookService bookService;
 
-    @RequestMapping("create")
+    @RequestMapping(value = "create")
     public String create(Book book){
         bookService.create(book);
         return "redirect:/book/queryAll";

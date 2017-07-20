@@ -11,11 +11,11 @@ import java.util.List;
  * 2017/7/18 11:01.
  * JavaEE_Framework
  */
-public abstract class GenericServiceImpl<T extends Serializable> implements GenericService<T> {
+public abstract class GenericServiceImpl<T extends Serializable,ID extends Number> implements GenericService<T,ID> {
 
-    GenericDao<T> genericDao;
+    GenericDao<T,ID> genericDao;
 
-    public abstract void setGenericDao(GenericDao<T> genericDao);
+    public abstract void setGenericDao(GenericDao<T,ID> genericDao);
     @Override
     public void create(T t) {
         genericDao.create(t);
@@ -32,7 +32,12 @@ public abstract class GenericServiceImpl<T extends Serializable> implements Gene
     }
 
     @Override
-    public T queryById(int id) {
+    public List<T> list(int page){
+        return null;
+    }
+
+    @Override
+    public T queryById(ID id) {
         return genericDao.queryById(id);
     }
 
@@ -47,7 +52,7 @@ public abstract class GenericServiceImpl<T extends Serializable> implements Gene
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(ID id) {
         genericDao.remove(id);
     }
 }

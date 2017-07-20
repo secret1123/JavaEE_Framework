@@ -7,5 +7,5 @@ import demo.model.Book;
  * 2017/7/14 11:03.
  * JavaEE_Framework
  */
-public interface BookDao extends GenericDao<Book>{
+public interface BookDao extends GenericDao<Book,Integer>{
 }
