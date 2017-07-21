@@ -1,6 +1,9 @@
 package demo.dao.impl;
 
 import demo.dao.GenericDao;
+import demo.util.Constant;
+import demo.util.Pagination;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -39,14 +42,15 @@ public class GenericDaoImpl<T extends Serializable,ID extends Number> implements
     }
 
     @Override
-    public List<T> queryAll() {
-        return sqlSession.selectList(namespace.concat(".queryAll"));
+    public Pagination<T> queryAll(int currentPage) {
+        return getPagination("queryAll",null,currentPage);
     }
 
     @Override
-    public List<T> list(int page) {
-        return sqlSession.selectList(namespace.concat(".list"));
+    public Pagination<T> query(String statement,Object parameter,int currentPage) {
+        return getPagination(statement,parameter,currentPage);
     }
+
 
     @Override
     public T queryById(ID id) {
@@ -67,4 +71,21 @@ public class GenericDaoImpl<T extends Serializable,ID extends Number> implements
     public void remove(ID id) {
         sqlSession.delete(namespace.concat(".remove"),id);
     }
+
+    /**
+     * 分页查询
+     *
+     * @param statement 查询SQL的id
+     * @param parameter 查询的参数
+     * @param currentPage 当前页
+     * @return Pagination 的实例
+     */
+    private Pagination<T> getPagination(String statement, Object parameter, int currentPage) {
+        int totalRows = sqlSession.selectList(namespace.concat(".").concat(statement),parameter).size();
+        int totalPages = (int) Math.ceil(totalRows / (double) Constant.PAGE_SIZE);
+        RowBounds rowBounds = new RowBounds((currentPage - 1) * Constant.PAGE_SIZE,Constant.PAGE_SIZE);
+        List<T> list = sqlSession.selectList(namespace.concat(".").concat(statement),parameter,rowBounds);
+        return new Pagination<>(list,statement,Constant.PAGE_SIZE,totalRows,totalPages,currentPage);
+    }
 }
+

@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS db_test.demo;
 CREATE TABLE db_test.demo (
   id   INT AUTO_INCREMENT PRIMARY KEY
   COMMENT 'PK',
-  name VARCHAR(191) NOT NULL UNIQUE
+  name VARCHAR(255) NOT NULL
   COMMENT '姓名'
 )
   COMMENT '测试表';
@@ -62,3 +62,5 @@ FROM db_test.student;
 
 SELECT *
 FROM db_test.demo;
+
+INSERT INTO db_test.demo VALUES (NULL ,'name');

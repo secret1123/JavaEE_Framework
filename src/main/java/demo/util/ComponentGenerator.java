@@ -28,7 +28,7 @@ class ComponentGenerator {
     private static final String PAGE_PATH = "src/main/webapp/";
     private static final String CONF_PATH = "src/main/resources/";
     private static final String PATH = CODE_PATH + PACKAGE.replace(".","/");
-    private static final String[] CODE_TPLS = {"Model","Dao","Dao.Impl","Service","Service.Impl","Controller"};
+    private static final String[] CODE_TPLS = {"Model","Dao","Dao.Impl","Service","Service.Impl","Controller.ftl"};
     private static final String[] PAGE_TPLS = {"index","add","list","edit"};
     private static final String[] CONF_TPLS = {"mapper"};
 

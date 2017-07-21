@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("book")
 public class BookController extends BaseController {
 
+    private final BookService bookService;
+
     @Autowired
-    private BookService bookService;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @RequestMapping(value = "create")
     public String create(Book book){
@@ -25,10 +29,15 @@ public class BookController extends BaseController {
         return "redirect:/book/queryAll";
     }
 
+    @RequestMapping("queryAll/{currentPage}")
+    private String queryAll(@PathVariable int currentPage) {
+        session.setAttribute("pagination",bookService.queryAll(currentPage));
+        return "redirect:/index.jsp";
+    }
+
     @RequestMapping("queryAll")
     public String queryAll(){
-        session.setAttribute("books",bookService.queryAll());
-        return "redirect:/index.jsp";
+        return queryAll(1);
     }
 
     @RequestMapping("queryById/{id}")

@@ -1,7 +1,8 @@
 package demo.service;
 
+import demo.util.Pagination;
+
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * Created by AnLu on
@@ -13,9 +14,9 @@ public interface GenericService<T extends Serializable,ID extends Number> {
 
     T query(String statement,Object parameter);
 
-    List<T> queryAll();
+    Pagination<T> queryAll(int currentPage);
 
-    List<T> list(int page);
+    Pagination<T> query(String statement,Object parameter,int currentPage);
 
     T queryById(ID id);
 
