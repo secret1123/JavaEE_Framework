@@ -9,15 +9,23 @@
 
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
-    <bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
+    <bean id="jdbc" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${jdbc_driverClassName}"/>
         <property name="url" value="${jdbc_url}"/>
         <property name="username" value="${jdbc_username}"/>
         <property name="password" value="${jdbc_password}"/>
     </bean>
 
+
+    <!--<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">-->
+        <!--<property name="driverClassName" value="${jdbc_driverClassName}"/>-->
+        <!--<property name="url" value="${jdbc_url}"/>-->
+        <!--<property name="username" value="${jdbc_username}"/>-->
+        <!--<property name="password" value="${jdbc_password}"/>-->
+    <!--</bean>-->
+
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dbcp"/>
+        <property name="dataSource" ref="jdbc"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
         <property name="typeAliasesPackage" value="demo.model"/>
     </bean>

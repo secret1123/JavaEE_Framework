@@ -40,7 +40,7 @@ ${sessionScope.user.username}
             <th>定价</th>
             <th colspan="2">操作</th>
         </tr>
-        <c:forEach var="book" items="${sessionScope.books}" varStatus="vs">
+        <c:forEach var="book" items="${sessionScope.pagination.list}" varStatus="vs">
             <tr>
                 <td>${vs.count}<input type="checkbox" name="ids" value="${book.id}"></td>
                 <td>${book.title}</td>
@@ -54,5 +54,8 @@ ${sessionScope.user.username}
     </table>
     <input type="submit" value="批量删除">
 </form>
+<c:import url="${ctx}/commons/page.jsp">
+    <c:param name="path" value="book/${sessionScope.pagination.statement}"/>
+</c:import>
 </body>
 </html>
